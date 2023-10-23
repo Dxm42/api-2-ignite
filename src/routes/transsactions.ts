@@ -5,7 +5,12 @@ import { knex } from "../database"
 import { checkSessionIdExists } from "../middlewares/check-sessions-id-exixts"
 
 // Cookies = Formas da gente manter contexto entre requisições
-export async function transsactionsRoutes(app: FastifyInstance){  
+export async function transsactionsRoutes(app: FastifyInstance){ 
+  
+   // Hook de validação global vale para todas as rotas
+   // app.addHook('preHandler', async (request, reply) => {
+   // console.log(`[${request.method}] ${request.url}`)
+  // })
   app.get('/',{
     preHandler:[checkSessionIdExists],
   },async (request, reply) => {
